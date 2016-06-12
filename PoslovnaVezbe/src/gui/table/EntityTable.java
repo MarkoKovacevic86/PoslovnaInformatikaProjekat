@@ -16,10 +16,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import database.ModelContentProvider;
 import database.PrepareSearchQuery;
 import database.QueryManager;
 import database.SqliteConnection;
 import gui.standard.form.StandardForm;
+import rs.mgifos.mosquito.model.MetaTable;
 
 public class EntityTable extends JTable{
 	
@@ -54,10 +56,10 @@ public class EntityTable extends JTable{
 				standardForm.updateDataPanel();
 			}
 		});	
-		mdata = QueryManager.getSearchQuery().getMetaData(tbName);
+		//mdata = QueryManager.getSearchQuery().getMetaData(tbName);
 		rs = QueryManager.getSearchQuery().getResultSet();				
 		setupCols();
-		setupRows();
+		//setupRows();
 		this.setModel(dtm);
 		return new JScrollPane(this);
 	}
@@ -68,24 +70,20 @@ public class EntityTable extends JTable{
 		dtm.setColumnCount(0);
 		dtm.setRowCount(0);
 		setupCols();
-		setupRows();
+		//setupRows();
 		setModel(dtm);
 		standardForm.setFormTable(this);
 		
 	}
 	
 	private void setupCols(){
-		try {						
-			mdata.getColumnCount();
-			for(int i = 1 ; i <= mdata.getColumnCount(); i++){
-				TableColumn tc = new TableColumn();				
-				dtm.addColumn(mdata.getColumnName(i));				
+			MetaTable mt = ModelContentProvider.getTableByName(tbName);			
+			//mdata.getColumnCount();
+			for(Object column : mt.cColumns()){
+				TableColumn tc = new TableColumn();
+				dtm.addColumn(column.toString());
+				System.out.println(column.toString());
 			}
-		} catch (SQLException e) {
-			System.out.println("cought");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	private void setupRows(){

@@ -13,8 +13,11 @@ import javax.swing.JOptionPane;
 
 import actions.main.form.DrzaveAction;
 import actions.main.form.NaseljenoMestoAction;
+import actions.main.form.OmniAction;
 import database.DBConnection;
+import database.ModelContentProvider;
 import database.SqliteConnection;
+import rs.mgifos.mosquito.model.MetaTable;
 
 public class MainFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
@@ -55,10 +58,13 @@ public class MainFrame extends JFrame{
 
 		MainMenu orgSemaMenu = new MainMenu("Organizaciona šema");
 		orgSemaMenu.setMnemonic(KeyEvent.VK_O);
-		MainMenuItem drzaveMI = new MainMenuItem(new DrzaveAction());
+		/*MainMenuItem drzaveMI = new MainMenuItem(new OmniAction(ModelContentProvider.getTableByName("Drzava").getName()));
 		orgSemaMenu.add(drzaveMI);	
-		MainMenuItem mestoMI = new MainMenuItem(new NaseljenoMestoAction());
-		orgSemaMenu.add(mestoMI);
+		MainMenuItem mestoMI = new MainMenuItem(new OmniAction(ModelContentProvider.getTableByName("Naseljeno mesto").getName()));
+		orgSemaMenu.add(mestoMI);*/
+		for(MetaTable table : ModelContentProvider.getModel()){
+			orgSemaMenu.add(new MainMenuItem(new OmniAction(table.getName())));
+		}
 		
 		menuBar.add(orgSemaMenu);				
 	}
