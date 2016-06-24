@@ -8,11 +8,9 @@ import java.sql.SQLException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 
-import database.SqliteConnection;
+import database.DBConnection;
 import gui.standard.form.StandardForm;
-import gui.standard.form.StateManager.State;
 
 
 
@@ -30,11 +28,8 @@ public class CommitAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			DatabaseMetaData dbmd = SqliteConnection.getConnection().getMetaData();
-			ResultSet rs = dbmd.getPrimaryKeys(null, null, standardForm.getFormTable().getName().replace(" ", "_"));
-			standardForm.disableApropriateFields(rs);
-			rs = dbmd.getImportedKeys(null, null, standardForm.getFormTable().getName().replace(" ", "_"));
-			standardForm.disableApropriateFields(rs);
+			standardForm.disableApropriateFields();
+			standardForm.disableApropriateFields();
 			standardForm.getDataPanel().buttonVisibility(false);
 			standardForm.getStateManager().determainState();			
 		} catch (SQLException e1) {

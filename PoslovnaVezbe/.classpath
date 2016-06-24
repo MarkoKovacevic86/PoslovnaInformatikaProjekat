@@ -2,23 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/jtds-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/miglayout-4.0-swing.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.15-M1.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.15-SNAPSHOT-2.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.15-SNAPSHOT-javadoc.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.15-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.7.2.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.10.1.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.10.2.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.11.1.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.11.2.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.11.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.5-pre1.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.6.jar"/>
-	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.7.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Mosquito"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JDBC"/>
+	<classpathentry kind="lib" path="Resources/mosquito-1.0.7.jar" sourcepath="Resources/mosquito-1.0.7"/>
+	<classpathentry kind="lib" path="Resources/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="D:/Fakultet/PoslovnaInformatika/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="D:/Fakultet/PoslovnaInformatika/sqlserver-win-auth.jar"/>
+	<classpathentry kind="lib" path="C:/Users/igot/Desktop/sqljdbc_4.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

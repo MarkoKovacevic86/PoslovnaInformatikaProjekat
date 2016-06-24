@@ -6,17 +6,12 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import actions.main.form.DrzaveAction;
-import actions.main.form.NaseljenoMestoAction;
 import actions.main.form.OmniAction;
 import database.DBConnection;
 import database.ModelContentProvider;
-import database.SqliteConnection;
 import rs.mgifos.mosquito.model.MetaTable;
 
 public class MainFrame extends JFrame{
@@ -43,7 +38,7 @@ public class MainFrame extends JFrame{
 					/*
 					 * Zatvori konekciju
 					 */
-					SqliteConnection.close();
+					DBConnection.close();
 					System.exit(0);
 				}
 			}

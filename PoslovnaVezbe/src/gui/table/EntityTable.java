@@ -2,10 +2,10 @@ package gui.table;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.swing.JScrollPane;
@@ -16,11 +16,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import database.DBConnection;
 import database.ModelContentProvider;
-import database.PrepareSearchQuery;
 import database.QueryManager;
-import database.SqliteConnection;
 import gui.standard.form.StandardForm;
+import rs.mgifos.mosquito.model.MetaColumn;
 import rs.mgifos.mosquito.model.MetaTable;
 
 public class EntityTable extends JTable{
@@ -28,6 +28,7 @@ public class EntityTable extends JTable{
 	private DefaultTableModel dtm;
 	private StandardForm standardForm;
 	private String tbName;
+	private String tbCode;
 	private ResultSetMetaData mdata;
 	ResultSet rs;
 	
@@ -44,6 +45,7 @@ public class EntityTable extends JTable{
 		dtm = new DefaultTableModel();
 		standardForm = sf;
 		tbName = tableName;
+		tbCode = tableName.toUpperCase().replace(" ", "_");
 		setSelectionMode(ListSelectionModel.SINGLE_SELECTION);		
 		getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			
@@ -56,10 +58,10 @@ public class EntityTable extends JTable{
 				standardForm.updateDataPanel();
 			}
 		});	
-		//mdata = QueryManager.getSearchQuery().getMetaData(tbName);
+		mdata = QueryManager.getSearchQuery().getMetaData(tbName);
 		rs = QueryManager.getSearchQuery().getResultSet();				
 		setupCols();
-		//setupRows();
+		setupRows();
 		this.setModel(dtm);
 		return new JScrollPane(this);
 	}
@@ -77,12 +79,10 @@ public class EntityTable extends JTable{
 	}
 	
 	private void setupCols(){
-			MetaTable mt = ModelContentProvider.getTableByName(tbName);			
-			//mdata.getColumnCount();
+			MetaTable mt = ModelContentProvider.getTableByCode(tbCode);
 			for(Object column : mt.cColumns()){
 				TableColumn tc = new TableColumn();
 				dtm.addColumn(column.toString());
-				System.out.println(column.toString());
 			}
 	}
 	
@@ -115,28 +115,15 @@ public class EntityTable extends JTable{
 	}
 	
 	public void getDBData(){
-		Connection conn = SqliteConnection.getConnection();		
+		Connection conn = DBConnection.getConnection();		
 	}
-	
-	public ResultSet getPrimaryKeyColumn() throws SQLException{
-		Connection conn = SqliteConnection.getConnection();
-		DatabaseMetaData md = conn.getMetaData();
-		ResultSet rs = md.getPrimaryKeys(null, null, getName());
-		return rs;
-	}
-	
-	public void getPrimaryColumns() throws SQLException{
-		ResultSet rs = getPrimaryKeyColumn();
-		while(rs.next()){
-			String columnName = rs.getString("COLUMN_NAME");	
-			getColumnModel().getColumnIndex(columnName);
-		}
-	}
-	
+
 	public Object getColumnByName(String name){
-		for(int i = 1;  i <= getColumnModel().getColumnCount();i++){
-			if(getColumnName(i).equals(name))
-				return getColumnModel().getColumn(i);
+		MetaTable mt = ModelContentProvider.getTableByCode(tbCode);
+		for(Object column : mt.cColumns()){
+			if(((MetaColumn)column).getName().equals(name)){
+				return column;
+			}
 		}return null;
 	}
 	
@@ -153,7 +140,6 @@ public class EntityTable extends JTable{
 			return;
 		}
 		int idx = getSelectedRow();
-		System.out.println(dtm.getRowCount());
 		if(dtm.getRowCount() > 1){
 			if(idx == 0){
 				setRowSelectionInterval(idx + 1 , idx + 1);			
@@ -163,6 +149,15 @@ public class EntityTable extends JTable{
 			dtm.removeRow(idx);
 		}else		
 			dtm.setRowCount(0);
-		
 	}
+
+	public String getTbCode() {
+		return tbCode;
+	}
+
+	public void setTbCode(String tbCode) {
+		this.tbCode = tbCode;
+	}
+	
+	
 } 

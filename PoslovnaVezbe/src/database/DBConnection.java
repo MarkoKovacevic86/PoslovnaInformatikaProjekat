@@ -31,7 +31,7 @@ public class DBConnection {
 		String username = bundle.getString("username");  
 		String password = bundle.getString("password");
 		Class.forName(driver); //Registrovanje drajvera
-		conn = DriverManager.getConnection(url, username, password);
+		conn = DriverManager.getConnection(url);
 		conn.setAutoCommit(false);
 	}
 

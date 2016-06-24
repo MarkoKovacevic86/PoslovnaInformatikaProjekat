@@ -4,8 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
+import database.ModelContentProvider;
 import gui.standard.form.StateManager.State;
+import rs.mgifos.mosquito.model.MetaTable;
 
 public class MyButton extends JButton implements ActionListener{
 	String zoomTableName;
@@ -14,6 +18,7 @@ public class MyButton extends JButton implements ActionListener{
 	public MyButton(){
 		addActionListener(this);
 	}
+	
 	
 	public void setContainingForm(StandardForm sf){
 		containingForm = sf;
@@ -33,17 +38,20 @@ public class MyButton extends JButton implements ActionListener{
 		return this;
 	}
 	
+	public MyButton setButtonZoomTable(MetaTable table){
+		zoomTableName = table.getCode();
+		return this;
+	}
+	
 	public String getButtonZoomTable(){
 		return zoomTableName;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub						
-		StandardForm sf = new StandardForm(zoomTableName);
-		sf.getStateManager().setState(State.ZOOM);
-		//sf.getToolbar().setVisible(false);
-		sf.setRefButton(this);
-		sf.setVisible(true);
+		JPanel zoomDialogPanel = new AddAnchorDialog(ModelContentProvider.getTableByCode(zoomTableName)).getPanel();
+		int n = JOptionPane.showConfirmDialog(null,zoomDialogPanel,zoomTableName,JOptionPane.OK_CANCEL_OPTION);
+		
+	
 	}
 }

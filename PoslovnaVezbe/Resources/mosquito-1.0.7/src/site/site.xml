@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+	<publishDate position="navigation-bottom" format="MM-dd-yyyy" />
+	<bannerLeft>
+		<name>${project.name}</name>
+		<src>images/mosquito-pdm-logo.png</src>
+		<href>http://mosquito-pdm.sourceforge.net/
+		</href>
+	</bannerLeft>
+	<bannerRight>
+		<src>http://sflogo.sourceforge.net/sflogo.php?group_id=234613&amp;type=5</src>
+		<href>http://sourceforge.net</href>
+	</bannerRight>
+	<poweredBy>
+		<logo name="IBN IT Solutions" href="http://www.ibn-it-solutions.com/" 
+			img="images/ibn-logo-125x31.png"/>
+		<logo name="SourceForge.net" href="http://sourceforge.net"
+			img="http://sflogo.sourceforge.net/sflogo.php?group_id=234613&amp;type=2" />
+	    <logo name="Maven" href="http://maven.apache.org/"
+	        img="http://maven.apache.org/images/logos/maven-feather.png"/>
+	</poweredBy>
+	<skin>
+	    <groupId>rs.mgifos</groupId>
+	    <artifactId>mosquito-pdm-siteskin</artifactId>
+	    <version>1.0</version>
+	</skin>
+	<body>
+		<menu name="General information">
+			<item name="Introduction" href="index.html" />
+			<item name="Download" href="http://sourceforge.net/project/showfiles.php?group_id=234613"/>
+		</menu> 
+		<menu ref="reports" />
+	</body>
+</project>

@@ -26,7 +26,7 @@ public class PrepareSearchQuery implements QueryI{
 	
 	public ResultSetMetaData getMetaData(String tableName) {
 		// TODO Auto-generated method stub
-		Connection conn = SqliteConnection.getConnection();
+		Connection conn = DBConnection.getConnection();
 		ResultSetMetaData rsmd = null;
 		try {
 			PreparedStatement ppstmnt = conn.prepareStatement(prepareQueryForDB(tableName));
@@ -41,6 +41,13 @@ public class PrepareSearchQuery implements QueryI{
 	
 	public ResultSet getResultSet(){
 		return rs;
+	}
+
+
+	@Override
+	public String parseColumnQuery(String tableName, String columnName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 		

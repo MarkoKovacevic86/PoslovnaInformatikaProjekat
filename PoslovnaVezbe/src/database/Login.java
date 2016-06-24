@@ -1,5 +1,8 @@
 package database;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JFrame;
 
@@ -13,7 +16,8 @@ public class Login {
 	
 	public Login() {
 		initialize();
-		connection = SqliteConnection.getConnection();
+		connection = DBConnection.getConnection();
+
 	}
 
 	/**

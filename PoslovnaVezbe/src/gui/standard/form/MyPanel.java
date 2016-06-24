@@ -3,7 +3,6 @@ package gui.standard.form;
 import java.awt.Component;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -13,11 +12,11 @@ public class MyPanel extends JPanel{
 	}
 	
 	public void enableTextFields(Boolean bool){
-		for(JTextField field : getTextField()){
+		for(Object field : getTextField()){
 			if(bool == true)
-				field.setEditable(true);
+				((JTextField)field).setEditable(true);
 			else
-				field.setEditable(false);
+				((JTextField)field).setEditable(false);
 		}
 	}
 	
@@ -27,8 +26,8 @@ public class MyPanel extends JPanel{
 		}
 	}
 	
-	public ArrayList<JTextField> getTextField(){
-		ArrayList<JTextField> textFields = new ArrayList<JTextField>();
+	public ArrayList<Object> getTextField(){
+		ArrayList<Object> textFields = new ArrayList<Object>();
 		for(Component component : this.getComponents()){
 			if(component.getClass() == JTextField.class){
 				textFields.add((JTextField) component);
@@ -46,9 +45,9 @@ public class MyPanel extends JPanel{
 		}return buttons;
 	}
 	
-	public JTextField getTextFieldByName(String name){
-		for(JTextField tField : getTextField()){
-			if(tField.getName().toUpperCase().equals(name.toUpperCase())){
+	public Object getTextFieldByName(String name){
+		for(Object tField : getTextField()){
+			if(((JTextField)tField).getName().toUpperCase().equals(name.toUpperCase())){
 				return tField;
 			}
 		}return null;

@@ -1,0 +1,11 @@
+Manifest-Version: 1.1
+Created-By: 1.5.0-b64 (Sun Microsystems Inc.)
+Implementation-Title: PDMetaLoader
+Implementation-Version: 0.2.3
+Implementation-URL: https://centar03.ftn.ns.ac.yu/
+Specification-Title: Sybase Power Designer MetaLoadable impl
+Specification-Version: 0.2.3
+Built-By: Johnny(nikola.petkov@gmail.com)
+
+Name: MetaLoaderInfo
+MetaLoadable: meta.pdml_v_10_0_0_1077.PDMetaLoader_v10001077

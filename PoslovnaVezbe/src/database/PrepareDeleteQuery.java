@@ -1,6 +1,5 @@
 package database;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -41,7 +40,7 @@ public class PrepareDeleteQuery implements QueryI {
 	private ArrayList<String> primaryCols = new ArrayList<String>();
 	
 	public void prepareMetaData(){
-		Connection conn = SqliteConnection.getConnection();
+		Connection conn = DBConnection.getConnection();
 		DatabaseMetaData md;
 		primaryCols.clear();
 		try {
@@ -55,6 +54,12 @@ public class PrepareDeleteQuery implements QueryI {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
+	}
+
+	@Override
+	public String parseColumnQuery(String tableName, String columnName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -47,6 +47,12 @@ public class PrepareInsertQuery implements QueryI {
 		mdata = QueryManager.getSearchQuery().getMetaData(tableName);
 		rs = QueryManager.getSearchQuery().getResultSet();
 		
+	}
+
+	@Override
+	public String parseColumnQuery(String tableName, String columnName) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 
 }

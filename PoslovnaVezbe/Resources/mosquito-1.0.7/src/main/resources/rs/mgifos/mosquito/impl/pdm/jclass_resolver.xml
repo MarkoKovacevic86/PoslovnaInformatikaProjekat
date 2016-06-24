@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JClassResolver>
+	<PDMType name="BOOL" jDefaultClass="java.lang.Boolean" />
+	<PDMType name="CHAR" jDefaultClass="java.lang.String" />
+	<PDMType name="DECIMAL" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="DATE" jDefaultClass="java.sql.Date" />
+	<PDMType name="NUMBER" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="NUMERIC" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="VARCHAR" jDefaultClass="java.lang.String" />
+	<!--Suport for MSSQL -->
+	<PDMType name="bool" jDefaultClass="java.lang.Boolean" />
+	<PDMType name="char" jDefaultClass="java.lang.String" />
+	<PDMType name="decimal" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="date" jDefaultClass="java.sql.Date" />
+	<PDMType name="number" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="numeric" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="varchar" jDefaultClass="java.lang.String" />
+	<PDMType name="datetime" jDefaultClass="java.sql.Date" />
+	<PDMType name="bit" jDefaultClass="java.lang.Boolean" />
+	<PDMType name="bigint" jDefaultClass="java.math.BigInteger" />
+	<PDMType name="int" jDefaultClass="java.math.BigInteger" />
+	<PDMType name="smallint" jDefaultClass="java.math.BigInteger" />
+	<PDMType name="tinyint" jDefaultClass="java.math.BigInteger" />
+	<PDMType name="float" jDefaultClass="java.lang.Float" />
+	<PDMType name="real" jDefaultClass="java.lang.Float" />
+	<PDMType name="double precision" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="money" jDefaultClass="java.math.BigDecimal" />
+	<PDMType name="text" jDefaultClass="java.lang.String" />
+</JClassResolver>

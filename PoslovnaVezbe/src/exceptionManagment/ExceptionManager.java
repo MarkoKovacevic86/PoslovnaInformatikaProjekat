@@ -3,7 +3,7 @@ package exceptionManagment;
 import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
 import gui.standard.form.UniqueKeyErrorDialog;
-import net.sourceforge.jtds.jdbc.UniqueIdentifier;
+
 
 public class ExceptionManager {
 	

@@ -10,7 +10,9 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.text.JTextComponent;
 
 import exceptionManagment.ExceptionManager;
 import gui.standard.form.StandardForm;
@@ -32,7 +34,7 @@ public class StatementExecutioner {
 		q = query;
 		try {
 			System.out.println(query);		
-			pstatement = SqliteConnection.getConnection().prepareStatement(query);
+			pstatement = DBConnection.getConnection().prepareStatement(query);
 			if(!query.contains("DELETE")){
 				for(int i = 1; i <= metadata.getColumnCount(); i++){				
 					setSwitch(metadata.getColumnType(i),i);
@@ -49,7 +51,7 @@ public class StatementExecutioner {
 			System.out.println("doso sam");
 			pstatement.executeUpdate();
 			
-			SqliteConnection.getConnection().commit();
+			DBConnection.getConnection().commit();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,7 +66,7 @@ public class StatementExecutioner {
 	ArrayList<String> primaryCols = new ArrayList<String>();
 	
 	public void prepareMetaData(){
-		Connection conn = SqliteConnection.getConnection();
+		Connection conn = DBConnection.getConnection();
 		primaryCols.clear();		
 		try {
 			dbMetadata = conn.getMetaData();
@@ -80,16 +82,14 @@ public class StatementExecutioner {
 	
 	private void setSwitch(int type, int idx) throws SQLException{
 		System.out.println("test");
-		if(!pForm.getDataPanel().getTextField().get(idx - 1).getText().equals("")){
+		if(!((JTextField) pForm.getDataPanel().getTextField().get(idx - 1)).getText().equals("")){
 	
 			switch(type){
 			case 4:				
-				System.out.println(pForm.getDataPanel().getTextField().get(idx - 1).getText());
-				pstatement.setInt(idx, Integer.parseInt(pForm.getDataPanel().getTextField().get(idx - 1).getText()));				
+				pstatement.setInt(idx, Integer.parseInt(((JTextComponent) pForm.getDataPanel().getTextField().get(idx - 1)).getText()));				
 				break;
 			case 12:									
-				System.out.println(pForm.getDataPanel().getTextField().get(idx - 1).getText());
-				pstatement.setString(idx, pForm.getDataPanel().getTextField().get(idx - 1).getText());
+				pstatement.setString(idx, ((JTextComponent) pForm.getDataPanel().getTextField().get(idx - 1)).getText());
 				break;
 			default:
 				break;
