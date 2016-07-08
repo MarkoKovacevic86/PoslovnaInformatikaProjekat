@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
+import javax.swing.JTextField;
+
+import standardform.control.ActiveForms;
+
 public class PrepareUpdateQuery implements QueryI {
 	
 	private ResultSetMetaData mdata;
@@ -29,7 +33,7 @@ public class PrepareUpdateQuery implements QueryI {
 				}else{
 					setPart += " , " + mdata.getColumnName(i) + " = ?";
 				}
-			}parameterPart += " WHERE " + mdata.getColumnName(1) + " = ?";
+			}parameterPart += " WHERE " + mdata.getColumnName(1) + " = " + ((JTextField)ActiveForms.getActiveFormes().get(0).getDataPanel().getTextField().get(0)).getText();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

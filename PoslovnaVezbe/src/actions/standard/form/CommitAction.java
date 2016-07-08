@@ -2,14 +2,13 @@ package actions.standard.form;
 
 
 import java.awt.event.ActionEvent;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
-import database.DBConnection;
+import database.MyInputVerifier;
 import gui.standard.form.StandardForm;
 
 
@@ -28,10 +27,15 @@ public class CommitAction extends AbstractAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			standardForm.disableApropriateFields();
-			standardForm.disableApropriateFields();
-			standardForm.getDataPanel().buttonVisibility(false);
-			standardForm.getStateManager().determainState();			
+			if(standardForm.fieldValidation()){
+				//standardForm.fieldValidation();
+				standardForm.disableApropriateFields();
+				standardForm.disableApropriateFields();
+				standardForm.getDataPanel().buttonVisibility(false);
+				standardForm.getStateManager().determainState();
+			}else{
+				System.out.println("Could Not Commit");
+			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

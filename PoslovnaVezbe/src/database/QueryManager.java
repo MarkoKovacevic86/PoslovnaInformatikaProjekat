@@ -6,6 +6,7 @@ public class QueryManager {
 	private static PrepareDeleteQuery pdq = new PrepareDeleteQuery();
 	private static PrepareColumnSearchQuary pcq = new PrepareColumnSearchQuary();
 	private static PrepareUpdateQuery puq = new PrepareUpdateQuery();
+	private static PrepareDeleteChildQuery pdcq = new PrepareDeleteChildQuery();
 	
 	public static PrepareSearchQuery getSearchQuery(){
 		return psq;
@@ -25,6 +26,10 @@ public class QueryManager {
 
 	public static PrepareColumnSearchQuary getColumnQuery() {
 		return pcq;
+	}
+	
+	public static PrepareDeleteChildQuery getDeleteChildQuery(){
+		return pdcq;
 	}
 	 
 	

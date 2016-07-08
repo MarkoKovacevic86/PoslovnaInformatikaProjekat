@@ -33,7 +33,7 @@ public class AddAction extends AbstractAction {
 			standardForm.getDataPanel().enableTextFields(true);
 			standardForm.getFormTable().clearSelection();
 			standardForm.clearDataPanelFields();
-			standardForm.zoomApropriateFields(rs);			
+			standardForm.zoomApropriateFields();			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -1,13 +1,17 @@
 package gui.standard.form;
 
-import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.HashMap;
 
-import javax.print.attribute.Size2DSyntax;
+import javax.swing.JTextField;
 
+import database.ModelContentProvider;
 import database.QueryManager;
 import database.StatementExecutioner;
+import rs.mgifos.mosquito.model.MetaColumn;
+import rs.mgifos.mosquito.model.MetaTable;
+import standardform.control.ActiveForms;
 
 public class StateManager {
 	public enum State { ADD, UPDATE,DEFAULT, ZOOM} ;
@@ -31,8 +35,10 @@ public class StateManager {
 		ResultSetMetaData mdata = QueryManager.getSearchQuery().getMetaData(parentForm.getFormTable().getName());
 		switch (state) {		
 		case ADD:		
+			System.out.println(parentForm.getfName() + "Insertig data");
 			String query = QueryManager.getInsertQuery().prepareQueryForDB(parentForm.getFormTable().getName());
-			se = new StatementExecutioner(query, mdata, parentForm);			
+			se = new StatementExecutioner(query, mdata, parentForm);
+			se.executeStatement();
 			parentForm.getFormTable().refreshTable();			
 			setState(State.DEFAULT);
 			break;
@@ -42,17 +48,22 @@ public class StateManager {
 		case ZOOM:
 			System.out.println(parentForm.getFormTable().getSelectedRow());
 			if(parentForm.getFormTable().getSelectedRow() >= 0){
-				//parentForm.getFormTable().getPrimaryColumns();
-				/*ResultSet rs = parentForm.getFormTable().getPrimaryKeyColumn();
-				while(rs.next())
-					System.out.println(rs.getString("COLUMN_NAME") + " Ovde");*/
+				System.out.println(parentForm.getfName() + " Exporting data");
+				MetaTable mt = ModelContentProvider.getTableByName(parentForm.getfName());
+				HashMap<String, String> mapOfData = new HashMap<String,String>();
+				for(MetaColumn mc : mt){
+					System.out.println("Imported DATA : "+ mc.getName() + " + " + ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+					mapOfData.put(mc.getName(), ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+				}
+				ActiveForms.deactivateForm(parentForm);
+				ActiveForms.getActiveParent().importData(mapOfData);
 				parentForm.dispose();
 			}
 			break;
 		default:			
-			String q = QueryManager.getUpdateQuery().prepareQueryForDB(parentForm.getFormTable().getName().replace(" ", "_"));
-			System.out.println("11111");
+			String q = QueryManager.getUpdateQuery().prepareQueryForDB(parentForm.getFormTable().getName().replace(" ", "_"));			
 			se = new StatementExecutioner(q, mdata, parentForm);
+			se.executeStatement();
 			parentForm.getFormTable().refreshTable();
 			break;
 		}

@@ -3,6 +3,7 @@ package gui.standard.form;
 import java.awt.Component;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -21,8 +22,8 @@ public class MyPanel extends JPanel{
 	}
 	
 	public void buttonVisibility(Boolean bool){
-		for(MyButton button : getButtons()){
-			button.setVisible(bool);
+		for(JButton button : getButtons()){
+		button.setVisible(bool);
 		}
 	}
 	
@@ -45,6 +46,15 @@ public class MyPanel extends JPanel{
 		}return buttons;
 	}
 	
+	public ArrayList<ZoomTableButton> getZoomButtons(){
+		ArrayList<ZoomTableButton> buttons = new ArrayList<ZoomTableButton>();
+		for(Component component : this.getComponents()){
+			if(component.getClass() == ZoomTableButton.class){
+				buttons.add((ZoomTableButton) component);
+			}
+		}return buttons;
+	}
+	
 	public Object getTextFieldByName(String name){
 		for(Object tField : getTextField()){
 			if(((JTextField)tField).getName().toUpperCase().equals(name.toUpperCase())){
@@ -58,6 +68,14 @@ public class MyPanel extends JPanel{
 			if(button.getName().toUpperCase().equals(name.toUpperCase()))
 				//System.out.println("test");
 				return button;
+		}return null;
+	}
+	
+	public ZoomTableButton getZoomButtonByName(String name){
+		for(ZoomTableButton button : getZoomButtons()){
+			if(button.getName().toUpperCase().equals(name.toUpperCase())){
+				return button;
+			}
 		}return null;
 	}
 }

@@ -72,7 +72,7 @@ public class EntityTable extends JTable{
 		dtm.setColumnCount(0);
 		dtm.setRowCount(0);
 		setupCols();
-		//setupRows();
+		setupRows();
 		setModel(dtm);
 		standardForm.setFormTable(this);
 		

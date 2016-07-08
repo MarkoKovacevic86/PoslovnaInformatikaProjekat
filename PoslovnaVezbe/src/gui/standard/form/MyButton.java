@@ -11,7 +11,7 @@ import database.ModelContentProvider;
 import gui.standard.form.StateManager.State;
 import rs.mgifos.mosquito.model.MetaTable;
 
-public class MyButton extends JButton implements ActionListener{
+public class MyButton extends JButton implements IFormButton{
 	String zoomTableName;
 	StandardForm containingForm;
 	

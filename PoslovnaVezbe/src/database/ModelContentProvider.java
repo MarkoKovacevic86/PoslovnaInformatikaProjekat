@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -24,6 +25,35 @@ public class ModelContentProvider {
 	
 	public ModelContentProvider() throws LoadingException{
 						
+	}
+	
+	public static void readColumnTypes(){
+		for(MetaTable table : model){
+			for(MetaColumn column : table){
+				System.out.println(column.getJClassName());
+			}
+		}
+	}
+	
+	public static List<MetaColumn> getPKColumns(MetaTable mt){
+		ArrayList<MetaColumn> pkCols = new ArrayList<MetaColumn>();
+		for(MetaColumn column : mt){
+			if(column.isPartOfPK())
+				pkCols.add(column);
+		}return pkCols;
+	}
+	
+	public static List<MetaTable> getChildTables(MetaColumn parentColumn){
+		ArrayList<MetaTable> tables = new ArrayList<MetaTable>();
+		for(MetaTable table : model){
+			for(MetaColumn mc : table){
+				if(mc.isPartOfFK()){
+					if(mc.getName().equals(parentColumn.getName())){
+						tables.add(table);
+					}
+				}
+			}
+		}return tables;
 	}
 	
 	public static void setupModel() throws LoadingException{
@@ -51,6 +81,14 @@ public class ModelContentProvider {
 		return model;
 	}
 	
+	public static MetaColumn getColumnByName(String tCode, String cName){
+		for(MetaColumn column : getTableByCode(tCode)){
+			if(column.getName().equals(cName))
+				return column;
+		};
+		return null;
+	}
+	
 	public static List<MetaColumn> getForeignKeyCols(String tableCode){
 		MetaTable mt = getTableByCode(tableCode);
 		Iterator i = mt.iterator();
@@ -63,6 +101,16 @@ public class ModelContentProvider {
 		}
 		return listOfForeignKeys;
 		
+	}
+	
+	public static List<MetaColumn> getTableColumns(String tableCode){
+		MetaTable mt = getTableByCode(tableCode);
+		Iterator i = mt.iterator();
+		ArrayList<MetaColumn> cols = new ArrayList<MetaColumn>();
+		while(i.hasNext()){
+			MetaColumn mc = (MetaColumn)i.next();
+			cols.add(mc);
+		}return cols;
 	}
 	
 	public static MetaTable getTableByName(String tableName){
@@ -95,6 +143,13 @@ public class ModelContentProvider {
 			e.printStackTrace();
 		}
 		return values;
+		
+	}
+	
+	private HashMap<String, String> tempDataMap;
+	
+	public void setTempTransferData(HashMap<String,String> map){
+		tempDataMap = map;
 		
 	}
 }

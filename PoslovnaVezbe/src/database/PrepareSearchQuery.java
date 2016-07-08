@@ -46,8 +46,19 @@ public class PrepareSearchQuery implements QueryI{
 
 	@Override
 	public String parseColumnQuery(String tableName, String columnName) {
-		// TODO Auto-generated method stub
-		return null;
+		return "SELECT * FROM " + tableName.replace(" ", "_") + " WHERE " + columnName.replace(" ", "_") + " = ";
+	}
+	
+	public ResultSetMetaData getChildData(String query){
+		Connection conn = DBConnection.getConnection();
+		ResultSetMetaData rsmd = null;
+		try{
+			PreparedStatement ppstmnt = conn.prepareStatement(query);
+			rs = ppstmnt.executeQuery();
+			rsmd = rs.getMetaData();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}return rsmd;
 	}
 	
 		
