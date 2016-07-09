@@ -33,7 +33,7 @@ public class VerifyDeletionDialog extends DialogAdapter{
 			ArrayList<MetaColumn> parentColumns = (ArrayList<MetaColumn>) ModelContentProvider.getPKColumns(parentTable);
 			String dQuery = QueryManager.getDeleteQuery().prepareQueryForDB(((StandardForm)parentFrame).getFormTable().getName());
 			ResultSetMetaData mdata = QueryManager.getSearchQuery().getMetaData(((StandardForm)parentFrame).getFormTable().getName());
-			se = new StatementExecutioner(dQuery, mdata,((StandardForm)parentFrame));
+			se = new StatementExecutioner(dQuery, mdata,((StandardForm)parentFrame).getDataPanel());
 			for(MetaColumn column : parentColumns){
 				ArrayList<MetaTable> childTables = (ArrayList<MetaTable>) ModelContentProvider.getChildTables(column);
 				for(MetaTable table : childTables){

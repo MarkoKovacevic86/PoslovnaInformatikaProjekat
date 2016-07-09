@@ -37,7 +37,7 @@ public class StateManager {
 		case ADD:		
 			System.out.println(parentForm.getfName() + "Insertig data");
 			String query = QueryManager.getInsertQuery().prepareQueryForDB(parentForm.getFormTable().getName());
-			se = new StatementExecutioner(query, mdata, parentForm);
+			se = new StatementExecutioner(query, mdata, parentForm.getDataPanel());
 			se.executeStatement();
 			parentForm.getFormTable().refreshTable();			
 			setState(State.DEFAULT);
@@ -62,7 +62,7 @@ public class StateManager {
 			break;
 		default:			
 			String q = QueryManager.getUpdateQuery().prepareQueryForDB(parentForm.getFormTable().getName().replace(" ", "_"));			
-			se = new StatementExecutioner(q, mdata, parentForm);
+			se = new StatementExecutioner(q, mdata, parentForm.getDataPanel());
 			se.executeStatement();
 			parentForm.getFormTable().refreshTable();
 			break;

@@ -8,8 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class MyPanel extends JPanel{
+	
+	String pCode;
+	
 	public MyPanel(){
 		super();
+	}
+	
+	public void setCode(String code){
+		pCode = code;
+	}
+	
+	public String getCode(){
+		return pCode;
 	}
 	
 	public void enableTextFields(Boolean bool){

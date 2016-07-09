@@ -18,7 +18,7 @@ import rs.mgifos.mosquito.model.MetaTable;
 public class AddAnchorDialog {
 	
 	private MetaTable mt;
-	private JPanel sPanel;
+	private MyPanel sPanel;
 	
 	public AddAnchorDialog(MetaTable metat){
 		mt = metat;
@@ -26,7 +26,8 @@ public class AddAnchorDialog {
 	}
 	
 	private void initialiseDialog(){
-		sPanel = new JPanel();
+		sPanel = new MyPanel();
+		sPanel.setCode(mt.getCode());
 
 		sPanel.setLayout(new MigLayout());
 		for(MetaColumn mc : mt){
@@ -52,4 +53,5 @@ public class AddAnchorDialog {
 	public JPanel getPanel(){
 		return sPanel;
 	}
+	
 }

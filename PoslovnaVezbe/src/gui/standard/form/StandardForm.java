@@ -231,6 +231,7 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 		bottomPanel = new MyPanel();
 		bottomPanel.setLayout(new MigLayout("fillx"));
 		dataPanel = new MyPanel();
+		dataPanel.setCode(fCode);
 		dataPanel.setLayout(new MigLayout("gapx 15px"));
 
 		JPanel buttonsPanel = new JPanel();

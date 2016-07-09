@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.JTextComponent;
 
 import exceptionManagment.ExceptionManager;
+import gui.standard.form.MyPanel;
 import gui.standard.form.StandardForm;
 import rs.mgifos.mosquito.model.MetaColumn;
 import rs.mgifos.mosquito.model.MetaTable;
@@ -24,7 +25,7 @@ public class StatementExecutioner {
 	ResultSetMetaData metadata;
 	DatabaseMetaData dbMetadata;
 	PreparedStatement pstatement ;
-	StandardForm pForm;
+	MyPanel dataPanel;
 	String q;
 	String tableName;
 	
@@ -32,9 +33,9 @@ public class StatementExecutioner {
 		this(query,mdata,null);
 	}
 	
-	public StatementExecutioner(String query, ResultSetMetaData mdata, StandardForm parentForm){		
+	public StatementExecutioner(String query, ResultSetMetaData mdata, MyPanel dataPanel){		
 		metadata = mdata;
-		pForm = parentForm;
+		this.dataPanel = dataPanel;
 		q = query;
 	}
 	
@@ -107,20 +108,20 @@ public class StatementExecutioner {
 	ArrayList<String> primaryCols = new ArrayList<String>();
 	
 	public List<MetaColumn> getPrimaryCols(){
-		MetaTable mt = ModelContentProvider.getTableByCode(pForm.getfCode());
+		MetaTable mt = ModelContentProvider.getTableByCode(dataPanel.getCode());
 		return ModelContentProvider.getPKColumns(mt);
 	}
 	
 	private void setSwitch(String type, int idx){
 		try{
-			if(!((JTextField) pForm.getDataPanel().getTextField().get(idx - 1)).getText().equals("")){
+			if(!((JTextField) dataPanel.getTextField().get(idx - 1)).getText().equals("")){
 				
 					switch(type){
 					case "int":
-						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) pForm.getDataPanel().getTextField().get(idx - 1)).getText()));				
+						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText()));				
 						break;
 					case "varchar":									
-						pstatement.setString(idx, ((JTextComponent) pForm.getDataPanel().getTextField().get(idx - 1)).getText());
+						pstatement.setString(idx, ((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText());
 						break;
 					default:
 						break;
