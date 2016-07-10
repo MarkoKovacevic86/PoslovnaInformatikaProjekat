@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+	<properties>
+		<author email="nikola.petkov@gmail.com">Nikola Petkov</author>
+		<title>Mosquito PDM</title>
+	</properties>
+	<body>
+		<section name="Introduction">
+			<p> Mosquito PDM is an open source Java library for parsing Power
+				Designer PDM files and converting them to the in-memory structure
+				based on object model provided by this library. It is quite useful
+				for relational model based code generation.</p>
+		</section>
+		<section name="Code sample">
+			<source>
+				<pre>
+					<font face="courier new, monospace" color="#000" size="2">
+	IMetaLoader metaLoader = <span style="color: #7f0055;">new</span> PDMetaLoader();
+
+	Properties properties = <span style="color: #7f0055;">new</span> Properties();
+	properties.put(PDMetaLoader.<span style="color: #0000c0; font-style: italic;">FILENAME</span>, <span style="color: #2a00ff; font-style: ">"meta-test-v12.pdm"</span>);
+
+	MetaModel model = metaLoader.getMetaModel(properties);
+
+	<span style="color: #7f0055;">for</span> (MetaTable table : model) {
+	    System.out.println(table.getCode());
+	}
+					</font>
+				</pre>
+			</source>
+		</section>
+	</body>
+</document>

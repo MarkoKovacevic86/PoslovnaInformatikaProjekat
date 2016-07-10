@@ -1,0 +1,9 @@
+Manifest-Version: 0.2.1
+Created-By: 1.5.0-b64 (Sun Microsystems Inc.)
+Implementation-Title: Meta Model and Meta Loader
+Implementation-Version: 0.2.3
+Implementation-URL: https://centar03.ftn.ns.ac.yu/
+Specification-Title: Meta Model and Meta Loader
+Specification-Version: 0.2.3
+Built-By: Johnny(nikola.petkov@gmail.com)
+
