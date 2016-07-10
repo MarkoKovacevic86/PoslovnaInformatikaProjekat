@@ -9,7 +9,8 @@ public interface IFormButton extends ActionListener{
 	@Override
 	void actionPerformed(ActionEvent e);
 	
-	public void setContainingForm(StandardForm sf);
+	//public void setContainingForm(StandardForm sf);
+	public void setParentPanel(MyPanel parentPanel);
 	public IFormButton setButtonZoomTable(String name);
 	public IFormButton setButtonZoomTable(MetaTable table);
 }

@@ -11,10 +11,15 @@ import java.util.Vector;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import com.sun.org.apache.bcel.internal.generic.CPInstruction;
 
 import database.DBConnection;
 import database.ModelContentProvider;
@@ -132,6 +137,15 @@ public class EntityTable extends JTable{
 			return this.getValueAt(this.getSelectedRow(), idx);
 		}
 		return null;
+	}
+	
+	private TableRowSorter<DefaultTableModel> trs;
+	
+	public void showSearchedRows(String input, String columName){
+		System.out.println("Searching for " + columName + " : " + input);
+		trs = new TableRowSorter<DefaultTableModel>(dtm);
+		this.setRowSorter(trs);
+		trs.setRowFilter(RowFilter.regexFilter("(?i)"+input));
 	}
 	
 	

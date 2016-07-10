@@ -115,9 +115,11 @@ public class StatementExecutioner {
 	private void setSwitch(String type, int idx){
 		try{
 			if(!((JTextField) dataPanel.getTextField().get(idx - 1)).getText().equals("")){
-				
 					switch(type){
-					case "int":
+					case "int" 	:
+						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText()));				
+						break;
+					case "bigint" :
 						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText()));				
 						break;
 					case "varchar":									

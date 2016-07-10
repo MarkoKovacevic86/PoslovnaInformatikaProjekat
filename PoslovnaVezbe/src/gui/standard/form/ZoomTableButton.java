@@ -10,7 +10,8 @@ import rs.mgifos.mosquito.model.MetaTable;
 public class ZoomTableButton extends JButton implements IFormButton {
 
 	String zoomTableName;
-	StandardForm containingForm;
+	//StandardForm containingForm;y
+	MyPanel parentPanel;
 	
 	public ZoomTableButton(){
 		this("");
@@ -29,12 +30,12 @@ public class ZoomTableButton extends JButton implements IFormButton {
 		sf.setVisible(true);
 	}
 
-	@Override
+/*	@Override
 	public void setContainingForm(StandardForm sf) {
 		// TODO Auto-generated method stub
 		containingForm = sf;
 	}
-
+*/
 	@Override
 	public IFormButton setButtonZoomTable(String name) {
 		zoomTableName = name;
@@ -46,6 +47,12 @@ public class ZoomTableButton extends JButton implements IFormButton {
 		// TODO Auto-generated method stub
 		zoomTableName = table.getName();
 		return this;
+	}
+
+	@Override
+	public void setParentPanel(MyPanel parentPanel) {
+		// TODO Auto-generated method stub
+		this.parentPanel = parentPanel;
 	}
 
 }

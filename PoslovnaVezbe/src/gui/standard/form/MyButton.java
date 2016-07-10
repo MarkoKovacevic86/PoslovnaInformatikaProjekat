@@ -18,13 +18,28 @@ import rs.mgifos.mosquito.model.MetaTable;
 
 public class MyButton extends JButton implements IFormButton{
 	String zoomTableName;
-	StandardForm containingForm;
+	//StandardForm containingForm;
+	MyPanel parentPanel;
 	
 	public MyButton(){
 		addActionListener(this);
 	}
 	
 	
+	
+	public MyPanel getParentPanel() {
+		return parentPanel;
+	}
+
+
+
+	public void setParentPanel(MyPanel parentPanel) {
+		this.parentPanel = parentPanel;
+	}
+
+
+
+	/*
 	public void setContainingForm(StandardForm sf){
 		containingForm = sf;
 	}
@@ -32,7 +47,7 @@ public class MyButton extends JButton implements IFormButton{
 	public StandardForm getContainingForm(){
 		return containingForm;
 	}
-	
+	*/
 	public MyButton(String name){
 		super(name);		
 		addActionListener(this);
@@ -61,7 +76,7 @@ public class MyButton extends JButton implements IFormButton{
 			String query = QueryManager.getInsertQuery().prepareQueryForDB(zoomTableName);
 			StatementExecutioner se = new StatementExecutioner(query, mdata, zoomDialogPanel);
 			se.executeStatement();
-			for(Object cfField : containingForm.getDataPanel().getTextField()){
+			for(Object cfField : parentPanel.getTextField()){
 				for(Object zField : zoomDialogPanel.getTextField()){
 					JTextComponent parentCast = (JTextComponent)cfField;
 					JTextComponent childCast = (JTextComponent) zField;

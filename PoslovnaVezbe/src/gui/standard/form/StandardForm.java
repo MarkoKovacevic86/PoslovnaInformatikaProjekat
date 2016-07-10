@@ -244,10 +244,11 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 			JTextField tempField = null;
 			MyButton button = new MyButton("+");
 			ZoomTableButton ztb = new ZoomTableButton("import");
-			button.setContainingForm(this);
+		//	button.setContainingForm(this);
+			button.setParentPanel(dataPanel);
 			button.setVisible(false);
 			button.setName(tblGrid.getColumnName(i));
-			ztb.setContainingForm(this);
+			//ztb.setContainingForm(this);
 			ztb.setVisible(false);
 			ztb.setName(tblGrid.getColumnName(i));
 			tempField = new JTextField(10);

@@ -24,7 +24,10 @@ public class NextFormAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		ZoomForm zf = new ZoomForm(standardForm);
-		zf.setVisible(true);
+		if(standardForm.getFormTable().getSelectedRow() >= 0){
+			ZoomForm zf = new ZoomForm(standardForm);
+			zf.setModal(true);
+			zf.setVisible(true);
+		}
 	}
 }

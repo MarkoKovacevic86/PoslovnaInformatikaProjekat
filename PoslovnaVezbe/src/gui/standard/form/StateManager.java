@@ -18,15 +18,30 @@ public class StateManager {
 	private State state = State.DEFAULT;
 	private StandardForm parentForm;
 	private StatementExecutioner se;
+	private MyPanel panel;
 	
 	public StateManager(StandardForm pform){
 		parentForm = pform;
+	}
+	
+	public StateManager(){}
+	
+	public StateManager(MyPanel panel){
+		this.panel = panel;
 	}
 	
 	public StandardForm getParentForm(){
 		return parentForm;
 	}
 	
+	public MyPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(MyPanel panel) {
+		this.panel = panel;
+	}
+
 	public void setState(State s){
 		state = s;
 	}
@@ -49,8 +64,9 @@ public class StateManager {
 			System.out.println(parentForm.getFormTable().getSelectedRow());
 			if(parentForm.getFormTable().getSelectedRow() >= 0){
 				System.out.println(parentForm.getfName() + " Exporting data");
-				MetaTable mt = ModelContentProvider.getTableByName(parentForm.getfName());
+				MetaTable mt = ModelContentProvider.getTableByCode(parentForm.getfCode());
 				HashMap<String, String> mapOfData = new HashMap<String,String>();
+				System.out.println(mt + " AJ ITS OK!");
 				for(MetaColumn mc : mt){
 					System.out.println("Imported DATA : "+ mc.getName() + " + " + ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
 					mapOfData.put(mc.getName(), ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());

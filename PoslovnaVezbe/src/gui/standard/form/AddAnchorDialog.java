@@ -40,6 +40,7 @@ public class AddAnchorDialog {
 			if(mc.isPartOfFK()){
 				MyButton mb = new MyButton("+");
 				mb.setButtonZoomTable(mc.getFkColParent().getParentTable());
+				mb.setParentPanel(sPanel);
 				tf.setEditable(false);
 				sPanel.add(tf);
 				sPanel.add(mb, "wrap");
