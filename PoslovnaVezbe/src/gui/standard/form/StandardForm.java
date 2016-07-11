@@ -183,7 +183,7 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 		btnSearch = new JButton(new SearchAction(this));
 		toolBar.add(btnSearch);
 
-		btnRefresh = new JButton(new RefreshAction());
+		btnRefresh = new JButton(new RefreshAction(this));
 		toolBar.add(btnRefresh);
 
 		btnPickup = new JButton(new PickupAction(this));

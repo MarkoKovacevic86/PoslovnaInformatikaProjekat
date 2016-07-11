@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import com.sun.org.apache.xerces.internal.util.ShadowedSymbolTable;
 
+import gui.search.form.MyTabbedPane;
 import gui.search.form.SearchForm;
 import gui.standard.form.StandardForm;
 
@@ -26,10 +27,21 @@ public class SearchAction extends AbstractAction {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		SearchForm sf = new SearchForm(standardForm.getFormTable());
-		int n = JOptionPane.showConfirmDialog(null, sf,standardForm.getfName(),JOptionPane.OK_CANCEL_OPTION);
+		//SearchForm sf = new SearchForm(standardForm.getFormTable());
+		MyTabbedPane mtb = new MyTabbedPane(standardForm.getFormTable());
+		int n = JOptionPane.showConfirmDialog(null, mtb, standardForm.getfName(), JOptionPane.OK_CANCEL_OPTION);
 		if(n == 0){
-			standardForm.getFormTable().showSearchedRows(((JTextField)sf.getSearchField()).getText(), sf.getStandardComboBoxType());
+			if(mtb.getSelectedIndex() == 0){
+				JTextField tf = (JTextField)mtb.getActiveTab().getSearchField();
+				standardForm.getFormTable().showSearchedRows(tf.getText(), mtb.getActiveTab().getStandardComboBoxType());
+			}else{
+				System.out.println("upao");
+				for(Object tf : mtb.getActiveTab().getTextField()){
+					JTextField cast = (JTextField)tf;
+					System.out.println(cast.getName());
+					standardForm.getFormTable().showSearchedRows(cast.getText(), cast.getName());
+				}
+			}
 		}
 	}
 }

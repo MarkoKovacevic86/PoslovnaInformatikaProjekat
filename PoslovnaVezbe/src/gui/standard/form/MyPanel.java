@@ -7,12 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import net.miginfocom.swing.MigLayout;
+
 public class MyPanel extends JPanel{
 	
 	String pCode;
 	
 	public MyPanel(){
 		super();
+		setLayout(new MigLayout());
 	}
 	
 	public void setCode(String code){

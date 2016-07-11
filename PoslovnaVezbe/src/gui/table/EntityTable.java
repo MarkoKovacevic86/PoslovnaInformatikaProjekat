@@ -68,14 +68,18 @@ public class EntityTable extends JTable{
 		setupCols();
 		setupRows();
 		this.setModel(dtm);
+		trs = new TableRowSorter<DefaultTableModel>(dtm);
+		this.setRowSorter(trs);
 		return new JScrollPane(this);
 	}
 	
 	public void refreshTable(){
 		mdata = QueryManager.getSearchQuery().getMetaData(tbName);
-		rs = QueryManager.getSearchQuery().getResultSet();			
+		rs = QueryManager.getSearchQuery().getResultSet();	
+		System.out.println("i ovde");
 		dtm.setColumnCount(0);
 		dtm.setRowCount(0);
+		this.setRowSorter(null);
 		setupCols();
 		setupRows();
 		setModel(dtm);
@@ -143,9 +147,22 @@ public class EntityTable extends JTable{
 	
 	public void showSearchedRows(String input, String columName){
 		System.out.println("Searching for " + columName + " : " + input);
-		trs = new TableRowSorter<DefaultTableModel>(dtm);
+		Vector originalModel = (Vector) ((DefaultTableModel)getModel()).getDataVector().clone();
+		DefaultTableModel tempModel = (DefaultTableModel) this.getModel();
+		tempModel.setRowCount(0);
+		for(Object rows : originalModel){
+			Vector rowVector = (Vector) rows;
+			for(Object column : rowVector){
+				if(column.toString().contains(input)){
+					tempModel.addRow(rowVector);
+					break;
+				}
+			}
+		}this.setModel(tempModel);
+	/*	trs = new TableRowSorter<DefaultTableModel>(dtm);
 		this.setRowSorter(trs);
-		trs.setRowFilter(RowFilter.regexFilter("(?i)"+input));
+		trs.setRowFilter(RowFilter.regexFilter("(?i)"+input));*/
+		
 	}
 	
 	
