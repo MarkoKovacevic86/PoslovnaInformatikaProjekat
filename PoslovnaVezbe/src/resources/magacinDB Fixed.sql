@@ -482,7 +482,7 @@ create table MAGACINSKA_KARTICA (
    KOLICINA_ULAZA       decimal(12,2)        null,
    VREDNOST_ULAZA       decimal(14,2)        null,
    KOLICINA_IZLAZA      decimal(12,2)        null,
-   VEDNOST_IZLAZA       decimal(14,2)        null,
+   VREDNOST_IZLAZA       decimal(14,2)        null,
    constraint PK_MAGACINSKA_KARTICA primary key nonclustered (PIB, SIFRA_ARTIKLA, GODINA, OZNAKA_MAGACINA, ID_MAGACINSKE_KARTICE)
 )
 go
