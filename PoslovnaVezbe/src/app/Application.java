@@ -24,7 +24,7 @@ public class Application {
 		window.frame.setVisible(false);
 		ModelContentProvider.setupModel();
 		ModelContentProvider.readTableNames();
-		
+		ModelContentProvider.readColumnTypes();
 		MainFrame.getInstance().setVisible(true);
 	}
 

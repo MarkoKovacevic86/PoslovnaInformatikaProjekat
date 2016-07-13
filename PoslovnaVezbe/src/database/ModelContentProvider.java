@@ -19,7 +19,7 @@ import rs.mgifos.mosquito.model.MetaTable;
 public class ModelContentProvider {
 	
 	
-	private static MetaModel model ;
+	private static MetaModel 	model ;
 	private static ResultSetMetaData mtdt;
 	private static ResultSet rs;
 	
@@ -30,7 +30,7 @@ public class ModelContentProvider {
 	public static void readColumnTypes(){
 		for(MetaTable table : model){
 			for(MetaColumn column : table){
-				System.out.println(column.getJClassName());
+				System.out.println(column.getJClassName() + " is it read only?"+ column.isCannotModify());
 			}
 		}
 	}

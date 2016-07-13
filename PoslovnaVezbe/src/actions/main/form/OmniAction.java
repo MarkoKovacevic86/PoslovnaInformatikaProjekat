@@ -20,6 +20,10 @@ public class OmniAction extends AbstractAction{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		StandardForm form = new StandardForm(this.actionName);
+		if(form.getfName().equals("ANALITIKA_MAGACINSKE_KARTICE") || form.getfName().equals("STAVKE_DOKUMENTA") || form.getfName().equals("ROBNA_KARTICA")){
+			form.getDataPanel().setVisible(false);
+		}
 		form.setVisible(true);
+		
 	}
 }
