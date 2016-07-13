@@ -34,7 +34,7 @@ public class ModelContentProvider {
 			}
 		}
 	}
-	
+	/*random*/
 	public static List<MetaColumn> getPKColumns(MetaTable mt){
 		ArrayList<MetaColumn> pkCols = new ArrayList<MetaColumn>();
 		for(MetaColumn column : mt){
