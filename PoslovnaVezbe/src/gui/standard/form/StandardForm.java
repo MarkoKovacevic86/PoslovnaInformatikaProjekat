@@ -145,8 +145,11 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 			((JTextComponent) dataPanel.getTextFieldByName(mc.getName())).setEditable(false);
 			
 		}
+		System.out.println("testjedan");
 		for(MetaColumn mc : ModelContentProvider.getTableByCode(fCode)){
-			if(mc.isMandatory()){
+			System.out.println("testdva");
+			if(!mc.isMandatory()){
+				System.out.println("testtri");
 				((JTextComponent) dataPanel.getTextFieldByName(mc.getName())).
 					setBorder(BorderFactory.createBevelBorder
 							(BevelBorder.LOWERED,java.awt.Color.red, java.awt.Color.white));

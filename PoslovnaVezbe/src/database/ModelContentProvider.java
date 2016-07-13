@@ -60,7 +60,7 @@ public class ModelContentProvider {
 		IMetaLoader metaLoader = new PDMetaLoader();
 
 		Properties properties = new Properties();
-		properties.put(PDMetaLoader.FILENAME, "src/resources/magacinsko_poslovanje.pdm");
+		properties.put(PDMetaLoader.FILENAME, "src/resources/MagacinskoPoslovanje.pdm");
 
 		model = metaLoader.getMetaModel(properties);
 	}
