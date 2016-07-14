@@ -125,7 +125,23 @@ public class StatementExecutioner {
 					case "varchar":									
 						pstatement.setString(idx, ((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText());
 						break;
+					case "char":
+						pstatement.setString(idx, ((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText());
+						break;
+					case "date":
+						pstatement.setString(idx, ((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText());
+						break;
+					case "datetime":
+						pstatement.setString(idx, ((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText());
+						break;	
+					case "numeric":
+						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText()));				
+						break;
+					case "decimal":
+						pstatement.setInt(idx, Integer.parseInt(((JTextComponent) dataPanel.getTextField().get(idx - 1)).getText()));				
+						break;
 					default:
+						System.out.println(type);
 						break;
 					}
 			}else{						

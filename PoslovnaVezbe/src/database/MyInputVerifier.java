@@ -36,7 +36,9 @@ public class MyInputVerifier extends InputVerifier {
 	}
 	
 	private boolean typeSwitch(String type, String value){
+		System.out.println("HERE" + type);
 		switch(type){
+			
 			case "BigInteger":
 				System.out.println("It'a a BigInt");
 				
@@ -68,9 +70,9 @@ public class MyInputVerifier extends InputVerifier {
 			case "Date":
 				System.out.println("It'a a Date");
 				try{
-					Date d = null;
+					java.util.Date d = null;
 					DateFormat formatter = new SimpleDateFormat("dd-MM-yy");
-					d = (Date) formatter.parse(value);
+					d = (java.util.Date) formatter.parse(value);
 				}catch(java.text.ParseException e){
 					ExceptionManager.handleException("invalid input");
 					return false;

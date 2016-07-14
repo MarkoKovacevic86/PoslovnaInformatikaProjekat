@@ -68,10 +68,19 @@ public class StateManager {
 				HashMap<String, String> mapOfData = new HashMap<String,String>();
 				System.out.println(mt + " AJ ITS OK!");
 				for(MetaColumn mc : mt){
-					System.out.println("Imported DATA : "+ mc.getName() + " + " + ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
-					mapOfData.put(mc.getName(), ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+	//				System.out.println("Imported DATA : "+ mc.getName() + " + " + ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+					
+	//				mapOfData.put(mc.getName(), ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+					if(mc.isPartOfPK()){
+						mapOfData.put(((ZoomTableButton)parentForm.getReferingButton()).getName(), ((JTextField)parentForm.getDataPanel().getTextFieldByName(mc.getName())).getText());
+					}
+					
 				}
-				ActiveForms.deactivateForm(parentForm);
+/*				for(int i = 0; i < parentForm.getDataPanel().getTextField().size();i++){
+					System.out.println(((ZoomTableButton)parentForm.getReferingButton()).getName());
+					mapOfData.put(((ZoomTableButton)parentForm.getReferingButton()).getName(), (((JTextField)parentForm.getDataPanel().getTextFieldByName(((ZoomTableButton)parentForm.getReferingButton()).getName())).getText()));
+				}
+*/				ActiveForms.deactivateForm(parentForm);
 				ActiveForms.getActiveParent().importData(mapOfData);
 				parentForm.dispose();
 			}

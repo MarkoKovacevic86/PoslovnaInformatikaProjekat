@@ -4,7 +4,6 @@ import javax.swing.UIManager;
 
 import database.Login;
 import database.ModelContentProvider;
-import database.TestDataParser;
 import gui.main.form.MainFrame;
 import rs.mgifos.mosquito.LoadingException;
 
@@ -20,12 +19,12 @@ public class Application {
 				
 		
 		Login window = new Login();
-		new TestDataParser();
 		window.frame.setVisible(false);
 		ModelContentProvider.setupModel();
 		ModelContentProvider.readTableNames();
-		ModelContentProvider.readColumnTypes();
 		MainFrame.getInstance().setVisible(true);
+		
 	}
+	
 
 }

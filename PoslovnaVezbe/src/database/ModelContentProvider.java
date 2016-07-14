@@ -1,5 +1,7 @@
 package database;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -30,11 +32,12 @@ public class ModelContentProvider {
 	public static void readColumnTypes(){
 		for(MetaTable table : model){
 			for(MetaColumn column : table){
-				System.out.println(column.getJClassName() + " is it read only?"+ column.isCannotModify());
+				System.out.println(column.getJClassName());
+				
 			}
 		}
 	}
-	/*random*/
+	
 	public static List<MetaColumn> getPKColumns(MetaTable mt){
 		ArrayList<MetaColumn> pkCols = new ArrayList<MetaColumn>();
 		for(MetaColumn column : mt){
@@ -42,6 +45,7 @@ public class ModelContentProvider {
 				pkCols.add(column);
 		}return pkCols;
 	}
+	
 	
 	public static List<MetaTable> getChildTables(MetaColumn parentColumn){
 		ArrayList<MetaTable> tables = new ArrayList<MetaTable>();

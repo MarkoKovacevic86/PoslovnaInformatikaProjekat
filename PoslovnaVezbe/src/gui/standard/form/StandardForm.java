@@ -114,6 +114,11 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 	public void setRefButton(IFormButton button) {
 		referingButton = button;
 	}
+	
+
+	public IFormButton getReferingButton() {
+		return referingButton;
+	}
 
 	private void fieldInit() throws SQLException {
 		DatabaseMetaData dbmd = DBConnection.getConnection().getMetaData();
@@ -163,7 +168,7 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 		for(MetaColumn mc : cols){
 			MyInputVerifier miv = new MyInputVerifier(mc);
 			if(!miv.verify((JComponent) dataPanel.getTextFieldByName(mc.getName()))){
-				return false;
+				return true;
 			}
 		}return true;
 	}
