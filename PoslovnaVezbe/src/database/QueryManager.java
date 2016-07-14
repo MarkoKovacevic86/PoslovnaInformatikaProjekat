@@ -7,7 +7,7 @@ public class QueryManager {
 	private static PrepareColumnSearchQuary pcq = new PrepareColumnSearchQuary();
 	private static PrepareUpdateQuery puq = new PrepareUpdateQuery();
 	private static PrepareDeleteChildQuery pdcq = new PrepareDeleteChildQuery();
-	private static PrepareCheckConstraintQuery pccq = new PrepareCheckConstraintQuery();
+	
 	
 	
 	public static PrepareSearchQuery getSearchQuery(){
@@ -34,8 +34,6 @@ public class QueryManager {
 		return pdcq;
 	}
 	
-	public static PrepareCheckConstraintQuery getChecConstraintQuery(){
-		return pccq;
-	}
+
 	 
 }

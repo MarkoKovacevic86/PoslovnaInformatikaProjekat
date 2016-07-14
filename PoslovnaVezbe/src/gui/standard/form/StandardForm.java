@@ -31,6 +31,7 @@ import actions.standard.form.NextFormAction;
 import actions.standard.form.PickupAction;
 import actions.standard.form.PreviousAction;
 import actions.standard.form.RefreshAction;
+import actions.standard.form.ReportAction;
 import actions.standard.form.RollbackAction;
 import actions.standard.form.SearchAction;
 import database.DBConnection;
@@ -50,7 +51,7 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 
 	private JToolBar toolBar;
 	private JButton btnAdd, btnCommit, btnDelete, btnFirst, btnLast, btnHelp, btnNext, btnNextForm, btnPickup,
-			btnRefresh, btnRollback, btnSearch, btnPrevious;
+			btnRefresh, btnRollback, btnSearch, btnPrevious,btnReport;
 
 	private EntityTable tblGrid = new EntityTable();
 	private MyPanel bottomPanel;
@@ -60,6 +61,14 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 	private String fCode;
 	private StandardForm parentForm;
 	private IFormButton referingButton;
+
+	public IFormButton getReferingButton() {
+		return referingButton;
+	}
+
+	public void setReferingButton(IFormButton referingButton) {
+		this.referingButton = referingButton;
+	}
 
 	public StandardForm(String formName){
 		fName = formName;
@@ -114,11 +123,6 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 	public void setRefButton(IFormButton button) {
 		referingButton = button;
 	}
-	
-
-	public IFormButton getReferingButton() {
-		return referingButton;
-	}
 
 	private void fieldInit() throws SQLException {
 		DatabaseMetaData dbmd = DBConnection.getConnection().getMetaData();
@@ -168,7 +172,7 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 		for(MetaColumn mc : cols){
 			MyInputVerifier miv = new MyInputVerifier(mc);
 			if(!miv.verify((JComponent) dataPanel.getTextFieldByName(mc.getName()))){
-				return true;
+				return false;
 			}
 		}return true;
 	}
@@ -226,7 +230,10 @@ public class StandardForm extends MyWindowAdapter implements WindowListener{
 
 		btnNextForm = new JButton(new NextFormAction(this));
 		toolBar.add(btnNextForm);
-
+		
+		btnReport = new JButton(new ReportAction(this));
+		toolBar.add(btnReport);
+		
 		add(toolBar, "dock north");
 	}
 

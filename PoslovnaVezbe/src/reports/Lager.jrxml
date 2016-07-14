@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Lager" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e3bf7bb-c143-4134-bcc9-d4fcc72c0aaf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="magacin" class="java.lang.String"/>
+	<parameter name="id_godine" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT RK.UKUPNA_KOLICINA, RK.UKUPNA_VREDNOST,RK.PROSECNA_CENA, RK.ID_ROBE, R.NAZIV_ROBE, JM.NAZIV_JEDINICE_MERE, GR.NAZIV_GRUPE
+	 FROM MAGACIN MA LEFT OUTER JOIN ROBNA_KARTICA RK ON MA.ID_MAGACINA = RK.ID_MAGACINA
+	 LEFT OUTER JOIN ROBA R ON RK.ID_ROBE = R.ID_ROBE  LEFT OUTER JOIN JEDINICA_MERE JM ON R.ID_JEDINICE = JM.ID_JEDINICE
+	 LEFT OUTER JOIN GRUPA_ROBA GR ON R.ID_GRUPE = GR.ID_GRUPE
+	 WHERE MA.ID_MAGACINA = $P{magacin} AND RK.ID_GODINE = $P{id_godine}]]>
+	</queryString>
+	<field name="UKUPNA_KOLICINA" class="java.lang.Integer"/>
+	<field name="UKUPNA_VREDNOST" class="java.math.BigDecimal"/>
+	<field name="PROSECNA_CENA" class="java.math.BigDecimal"/>
+	<field name="ID_ROBE" class="java.lang.Integer"/>
+	<field name="NAZIV_ROBE" class="java.lang.String"/>
+	<field name="NAZIV_JEDINICE_MERE" class="java.lang.String"/>
+	<field name="NAZIV_GRUPE" class="java.lang.String"/>
+	<pageHeader>
+		<band height="145" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="14" width="329" height="91" uuid="bd40ce99-08d1-4820-930f-de218e823194"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lager lista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="121" width="100" height="20" uuid="a368c6f4-7910-42a1-827d-92508fe64529"/>
+				<text><![CDATA[Sifra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="121" width="100" height="20" uuid="3dc2ba8d-b6ed-4324-b6cc-0ef3ba09172e"/>
+				<text><![CDATA[Naziv]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="121" width="100" height="20" uuid="47c9b3c7-a22c-40be-b4c0-e9cb73ff1cff"/>
+				<text><![CDATA[Kolicina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="121" width="100" height="20" uuid="7d4e205b-5af1-434d-ae15-dc712b403004"/>
+				<text><![CDATA[Cena]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="121" width="100" height="19" uuid="beec7183-8d47-4951-a66c-53b79eb9905d"/>
+				<text><![CDATA[Vrednost]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-20" y="141" width="606" height="1" uuid="b1783e0c-38db-4127-8ba2-8f71f16e181c"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="27">
+			<textField>
+				<reportElement x="0" y="7" width="100" height="20" uuid="194da692-8aaa-4e59-afad-26252bde92b1"/>
+				<textFieldExpression><![CDATA[$F{ID_ROBE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="7" width="100" height="20" uuid="f954713f-c683-46a7-92ac-bb1dfadc4127"/>
+				<textFieldExpression><![CDATA[$F{NAZIV_ROBE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="7" width="100" height="20" uuid="9c615490-126c-4a6a-83cf-74df720c4e85"/>
+				<textFieldExpression><![CDATA[$F{UKUPNA_KOLICINA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="7" width="100" height="20" uuid="e396cc5d-57ec-46a9-867d-ead54d2f03fa"/>
+				<textFieldExpression><![CDATA[$F{PROSECNA_CENA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="7" width="100" height="20" uuid="2ad1f078-c1ef-4f5c-a75d-d10228908315"/>
+				<textFieldExpression><![CDATA[$F{UKUPNA_VREDNOST}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="75">
+			<staticText>
+				<reportElement x="251" y="46" width="204" height="29" uuid="ebdaac22-f181-4858-9fea-6477acdc332d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ukupna vrednost :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="14" width="661" height="1" uuid="e63c649b-5dc7-48a5-8d64-b863f21ce7a9"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
